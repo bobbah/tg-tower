@@ -18,8 +18,6 @@
     host_addr: '{{ ansible_default_ipv4.address }}'
     # External port for TGS communication
     tgs_external_port: 5000
-    # Game server port to expose
-    tgs_game_ports: [ 1337 ]
     # Don't modify this unless you know what you're doing, used for
     # constructing the list of ports for docker to publish for each
     # of the game servers
@@ -56,7 +54,7 @@
     - name: Construct list of ports for game servers on this server
       set_fact:
         _tgs_game_ports_processed: '{{ _tgs_game_ports_processed }} + [ "0.0.0.0:{{ item }}:{{ item }}" ]'
-      loop: "{{ tgs_game_ports }}"
+      loop: "{{ tgs_game_ports | default([ 1337 ]) }}"
 
     - name: Create TGS config file directory
       file:
