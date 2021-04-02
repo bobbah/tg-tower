@@ -54,10 +54,15 @@
         - jsondiff
         - pyyaml
 
+    - name: Use defaults for game ports if not defined for this host
+      set_fact:
+        tgs_game_ports: '{{ tgs_game_ports_default }}'
+      when: tgs_game_ports is undefined
+
     - name: Construct list of ports for game servers on this server
       set_fact:
         _tgs_game_ports_processed: '{{ _tgs_game_ports_processed }} + [ "0.0.0.0:{{ item }}:{{ item }}" ]'
-      loop: "{{ tgs_game_ports | tgs_game_ports_default }}"
+      loop: "{{ tgs_game_ports }}"
 
     - name: Create TGS config file directory
       file:
