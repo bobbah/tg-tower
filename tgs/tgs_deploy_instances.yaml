@@ -102,6 +102,8 @@
         state: started
         restart: yes
         restart_policy: unless-stopped
+        comparisons:
+          ports: strict # Explicitly require only the specified ports, do not allow additional existing ports to be ignored
         ports: '{{ [ tgs_external_port ~ ":5000" ] + _tgs_game_ports_processed }}'
         volumes:
           - '{{ tgs_dir }}/appsettings.Production.yml:/config_data/appsettings.Production.yml'
