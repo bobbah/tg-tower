@@ -52,7 +52,6 @@
         name: '{{ postgres_container_name }}'
         image: "{{ postgres_container_image }}"
         state: started
-        restart: yes
         restart_policy: unless-stopped
         ports: 
           - "{{ postgres_external_port }}:5432"

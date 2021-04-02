@@ -54,6 +54,16 @@
         - jsondiff
         - pyyaml
 
+    - name: Get latest youtube-dl
+      get_url:
+        url: https://yt-dl.org/downloads/latest/youtube-dl
+        dest: '{{ tgs_dir }}/youtube-dl'
+
+    - name: Ensure youtube-dl is executable
+      file:
+        path: '{{ tgs_dir }}/youtube-dl'
+        mode: a+rx
+
     - name: Use defaults for game ports if not defined for this host
       set_fact:
         tgs_game_ports: '{{ tgs_game_ports_default }}'
@@ -100,7 +110,6 @@
         name: '{{ tgs_container_name }}'
         image: '{{ tgs_container_image }}'
         state: started
-        restart: yes
         restart_policy: unless-stopped
         comparisons:
           ports: strict # Explicitly require only the specified ports, do not allow additional existing ports to be ignored
@@ -110,6 +119,7 @@
           - '{{ tgs_config_dir }}:/config_data'
           - '{{ tgs_instances_dir }}:/tgs4_instances'
           - '{{ tgs_logs_dir }}:/tgs_logs'
+          - '{{ tgs_dir }}/youtube-dl:/usr/local/bin/youtube-dl'
         capabilities:
           - 'sys_nice'
         init: yes
