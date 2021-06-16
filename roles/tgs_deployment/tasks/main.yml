@@ -45,4 +45,3 @@
             - '{{ tgs_logs_dir }}:/tgs_logs'
           cap_add:
             - 'SYS_NICE'
-          init: true
