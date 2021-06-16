@@ -19,7 +19,7 @@ ControlPanel:
 {% endif %}
 Swarm:
     PrivateKey: "{{ tgs_swarm_private_key }}"
-{% if tgs_swarm_controller %}
+{% if tgs_swarm_controller != host_addr %}
     ControllerAddress: "http://{{ tgs_swarm_controller }}:{{ tgs_external_port }}/"
 {% endif %}
     Address: "http://{{ host_addr }}:{{ tgs_external_port }}/"
