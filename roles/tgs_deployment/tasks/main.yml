@@ -36,7 +36,7 @@
           deploy:
             mode: global
             placement:
-              constraints: [ tgs_role == node ]
+              constraints: [ node.labels.tgs_role == node ]
           ports: '{{ [ tgs_external_port ~ ":5000" ] + _tgs_game_ports_processed }}'
           volumes:
             - '{{ tgs_dir }}/appsettings.Production.yml:/config_data/appsettings.Production.yml'
