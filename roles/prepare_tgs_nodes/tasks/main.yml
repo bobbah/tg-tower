@@ -5,7 +5,7 @@
 
 - name: Export docker swarm id of nodes to be assigned labels
   set_fact:
-    swarm_node_id: "{{ docker_data['Swarm']['NodeID'] }}"
+    swarm_node_id: "{{ docker_data['host_info']['Swarm']['NodeID'] }}"
 
 # technically this should probably be moved out into its own role
 # as it assumes the docker swarm host will also be a tgs node
