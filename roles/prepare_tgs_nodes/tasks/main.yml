@@ -23,11 +23,6 @@
     state: directory
     mode: '0740'
 
-- name: Construct list of ports for game servers on this server
-  set_fact:
-    _tgs_game_ports_processed: '{{ _tgs_game_ports_processed }} + [ "0.0.0.0:{{ item }}:{{ item }}" ]'
-  loop: "{{ tgs_game_ports }}"
-
 - name: Get swarm controller IP for use in configuration
   set_fact:
     tgs_swarm_controller: "{{ hostvars[item]['ansible_default_ipv4'].address }}"

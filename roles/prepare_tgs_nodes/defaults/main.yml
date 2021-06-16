@@ -12,12 +12,6 @@ tgs_instances_dir: '{{ tgs_dir }}/instances'
 tgs_logs_dir: '{{ tgs_dir }}/logs'
 # External port for TGS communication
 tgs_external_port: 5000
-# Game server port to expose
-tgs_game_ports: [ 1337 ]
-# Don't modify this unless you know what you're doing, used for
-# constructing the list of ports for docker to publish for each
-# of the game servers
-_tgs_game_ports_processed: []
 # The hostname for the postgres database, leave default to use docker's
 # dns resolution
 postgres_host: 'postgres'
