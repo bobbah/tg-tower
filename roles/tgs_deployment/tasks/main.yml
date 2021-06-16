@@ -43,5 +43,5 @@
             - '{{ tgs_config_dir }}:/config_data'
             - '{{ tgs_instances_dir }}:/tgs4_instances'
             - '{{ tgs_logs_dir }}:/tgs_logs'
-          capabilities:
-            - 'sys_nice'
+          cap_add:
+            - 'SYS_NICE'
