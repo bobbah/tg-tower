@@ -12,7 +12,6 @@
       version: "3.2"
       networks:
         tgs_net:
-          name: 'tgs_net'
           driver: 'overlay'
       services:
         postgres:
